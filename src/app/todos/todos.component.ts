@@ -11,7 +11,6 @@ import { StreakWidgetComponent } from '../components/streak-widget/streak-widget
 
 @Component({
   selector: 'app-todos',
-  standalone: true,
   imports: [TodoItemComponent, FormsModule, SearchTodosPipe, FilterCompletedTodosPipe, StreakWidgetComponent],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.scss',
