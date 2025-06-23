@@ -1,0 +1,22 @@
+<li appHighlightCompletedTodo [isCompleted]="todo().completed" class="todo__item">
+    <input id="todo-{{ todo().id }}" type="checkbox" [checked]="todo().completed" (change)="todoClicked()" />
+
+    <!-- View mode -->
+    <label *ngIf="!todo().isEditing" for="todo-{{ todo().id }}">
+        {{ todo().title | uppercase }}
+    </label>
+
+    <!-- Edit mode -->
+    <input *ngIf="todo().isEditing" [(ngModel)]="todo().title" (blur)="onEditFinish()" (keydown.enter)="onEditFinish()"
+        class="todo__edit-input" autofocus />
+
+    <!-- Edit button only if not editing -->
+    <button *ngIf="!todo().isEditing" (click)="onEditClick()" class="edit-btn" title="Edit">
+        ✏️
+    </button>
+
+    <!-- Delete button only if not editing -->
+    <button *ngIf="!todo().isEditing" (click)="deleteTodo()" class="delete-btn" title="Delete">
+        🗑️
+    </button>
+</li>

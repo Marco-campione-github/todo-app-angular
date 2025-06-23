@@ -1,0 +1,44 @@
+<h3>Todos List</h3>
+
+<app-streak-widget [streak]="streakCount()" />
+
+<div class="counters-and-filters">
+
+  <div class="filters">
+    <form (submit)="addTodoItem(); $event.preventDefault()">
+      <label>Add Todo</label>
+      <input [(ngModel)]="newTodoItemTitle" name="newTodoTitle" placeholder="Type here the todo" required />
+      <button type="submit">Add</button>
+    </form>
+
+    <form>
+      <label>Filter Todos</label>
+      <input name="searchTerm" [(ngModel)]="searchTerm" placeholder="Search todos..." />
+    </form>
+
+    <form>
+      <label>Filter Status</label>
+      <select [(ngModel)]="filterStatus" name="filterStatus">
+        <option value="all">All</option>
+        <option value="ongoing">Ongoing</option>
+        <option value="completed">Completed</option>
+      </select>
+    </form>
+  </div>
+
+  <div class="counters">
+    <div class="completed-counter">✅ Completed Todos: {{ completedCount() }}</div>
+    <div class="ongoing-counter">⏱️ Ongoing Todos: {{ ongoingCount() }}</div>
+  </div>
+</div>
+
+@if (!todoItems().length) {
+<p>Loading...</p>
+}
+
+<ul class="todos">
+  @for (todo of todoItems() | searchTodos : searchTerm() | filterCompletedTodos : filterStatus(); track todo.id) {
+  <app-todo-item [todo]="todo" (todoToggled)="updateTodoItem($event)" (deleteTodoItem)="deleteTodoItem($event)"
+    (todoEdited)="saveEditedTodo($event)" (toggleEditing)="toggleTodoEditing($event)" />
+  }
+</ul>

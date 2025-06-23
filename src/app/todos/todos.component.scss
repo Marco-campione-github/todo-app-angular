@@ -1,0 +1,84 @@
+/* Container for counters and filters */
+.counters-and-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Counters group */
+.counters {
+  display: flex;
+  gap: 16px;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex-grow: 1;
+}
+
+/* Filters group */
+.filters {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  flex-grow: 2;
+}
+
+/* Individual counter style */
+.completed-counter, .ongoing-counter {
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.completed-counter {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.ongoing-counter {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Style your forms inside filters */
+.filters form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  flex: 1 1 200px; /* grow and shrink, min 200px width */
+}
+
+/* Ensure inputs & selects fill the form nicely */
+.filters input,
+.filters select {
+  flex: 1;
+  max-width: 250px;
+}
+
+/* Add Todo form should be a bit wider */
+.filters form:first-child {
+  flex: 1 1 300px;
+}
+
+/* Button style stays same, can add margin-left */
+.filters button {
+  margin-left: 8px;
+}
+
+/* Responsive tweak */
+@media (max-width: 600px) {
+  .counters-and-filters {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .filters form {
+    flex: 1 1 100%;
+  }
+}
