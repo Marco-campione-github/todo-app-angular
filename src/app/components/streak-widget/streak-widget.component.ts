@@ -1,9 +1,9 @@
 import { Component, input } from '@angular/core';
-import { NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'app-streak-widget',
-  imports: [NgIf],
+  imports: [],
   templateUrl: './streak-widget.component.html',
   styleUrls: ['./streak-widget.component.scss']
 })

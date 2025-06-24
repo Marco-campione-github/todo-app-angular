@@ -1,3 +1,5 @@
-<div *ngIf="streak() > 0" class="streak">
-  🔥 You're on a {{ streak() }}-day streak! 🔥
-</div>
+@if (streak() > 0) {
+  <div class="streak">
+    🔥 You're on a {{ streak() }}-day streak! 🔥
+  </div>
+}
