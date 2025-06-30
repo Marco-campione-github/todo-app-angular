@@ -6,19 +6,19 @@
 
   <div class="filters">
     <form (submit)="addTodoItem(); $event.preventDefault()">
-      <label>Add Todo</label>
-      <input [(ngModel)]="newTodoItemTitle" name="newTodoTitle" placeholder="Type here the todo" required />
+      <label for="additem">Add Todo</label>
+      <input [(ngModel)]="newTodoItemTitle" name="newTodoTitle" placeholder="Type here the todo" required id="additem" />
       <button type="submit">Add</button>
     </form>
 
     <form>
-      <label>Filter Todos</label>
-      <input name="searchTerm" [(ngModel)]="searchTerm" placeholder="Search todos..." />
+      <label for="filteritem">Filter Todos</label>
+      <input name="searchTerm" [(ngModel)]="searchTerm" placeholder="Search todos..." id="filteritem"/>
     </form>
 
     <form>
-      <label>Filter Status</label>
-      <select [(ngModel)]="filterStatus" name="filterStatus">
+      <label for="filterstatus">Filter Status</label>
+      <select [(ngModel)]="filterStatus" name="filterStatus" id="filterstatus">
         <option value="all">All</option>
         <option value="ongoing">Ongoing</option>
         <option value="completed">Completed</option>
