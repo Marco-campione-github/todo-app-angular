@@ -29,4 +29,9 @@ export class LoginComponent {
       .then(() => this.router.navigate(['/todos']))
       .catch((err) => this.error.set(err.message));
   }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
+  
 }

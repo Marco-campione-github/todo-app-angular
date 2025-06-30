@@ -13,3 +13,8 @@
 @if (error()) {
   <div style="color: red;">{{ error() }}</div>
 }
+
+<div style="margin-top: 1rem;">
+  Already have an account?
+  <button (click)="goToLogin()" type="button">Login</button>
+</div>
