@@ -1,11 +1,11 @@
 <h2>Login</h2>
 
 <form (submit)="login(); $event.preventDefault()">
-  <label>Email</label>
-  <input type="email" [(ngModel)]="email" name="email" required />
+  <label for="email">Email</label>
+  <input type="email" [(ngModel)]="email" name="email" required autocomplete="email" id="email"/>
 
-  <label>Password</label>
-  <input type="password" [(ngModel)]="password" name="password" required />
+  <label for="password">Password</label>
+  <input type="password" [(ngModel)]="password" name="password" required id="password"/>
 
   <button type="submit">Login</button>
 </form>

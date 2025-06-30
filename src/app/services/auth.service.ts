@@ -1,19 +1,19 @@
 import { Injectable, signal } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, User } from '@angular/fire/auth';
 import { NgZone } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   currentUser = signal<string | null>(null);
+  private authStateSubject = new BehaviorSubject<User | null | undefined>(undefined); // undefined = not loaded yet
+  authState$ = this.authStateSubject.asObservable();
 
-  constructor(
-    private auth: Auth,
-    private ngZone: NgZone
-  ) {
-    onAuthStateChanged(this.auth, user => {
-      // Ensure change detection can see this
+  constructor(private auth: Auth, private ngZone: NgZone) {
+    onAuthStateChanged(this.auth, (user) => {
       this.ngZone.run(() => {
         this.currentUser.set(user?.uid ?? null);
+        this.authStateSubject.next(user); // emit user or null
       });
     });
   }
