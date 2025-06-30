@@ -1,7 +1,7 @@
 export type Todo = {
-    userId: number;
+    userId: string;
     completed: boolean;
     title: string;
-    id: number;
+    id: string;
     isEditing?: boolean;
 }

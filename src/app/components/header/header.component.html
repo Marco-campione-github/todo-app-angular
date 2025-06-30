@@ -10,5 +10,10 @@
         <ul>
             <li routerLink="/register">Register</li>
         </ul>
+        @if (authService.currentUser()) {
+        <ul>
+            <li (click)="logout()">Logout</li>
+        </ul>
+        }
     </nav>
 </header>

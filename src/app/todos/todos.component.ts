@@ -27,43 +27,24 @@ export class TodosComponent implements OnInit {
   ongoingCount = signal(0);
 
   ngOnInit(): void {
-    this.todoService
-      .getTodosFromApi()
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          throw err;
-        })
-      )
-      .subscribe((todos) => {
-        this.todoItems.set(todos);
-        this.updateCompletedCount(todos);
-      });
+    this.todoService.getTodos().subscribe((todos) => {
+      this.todoItems.set(todos);
+      this.updateCompletedCount(todos);
+    });
 
     this.streakCount.set(this.streakService.getStreak());
     this.streakService.resetStreakIfNeeded();
   }
 
   updateTodoItem(todoItem: Todo) {
-    this.todoItems.update((todos) => {
-      const updatedTodos = todos.map((todo) => {
-        if (todo.id === todoItem.id) {
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        }
-        return todo;
-      });
+    const updatedTodo = {
+      ...todoItem,
+      completed: !todoItem.completed,
+    };
 
-      this.updateCompletedCount(updatedTodos);
+    this.todoService.updateTodo(updatedTodo);
 
-      return updatedTodos;
-    });
-
-    // Updates the streak count if the todo item is completed
     if (!todoItem.completed) {
-      console.log('Todo item completed:', todoItem);
       const newStreak = this.streakService.updateStreakForToday();
       this.streakCount.set(newStreak);
     }
@@ -80,28 +61,16 @@ export class TodosComponent implements OnInit {
     const title = this.newTodoItemTitle().trim();
     if (!title) return;
 
-    const newTodo: Todo = {
-      id: Date.now(), // to change later to a proper ID generation
-      title,
-      completed: false,
-      userId: 1, // to change later to a proper user ID
-    };
-
-    this.todoItems.update((todos) => {
-      const updatedTodos = [newTodo, ...todos];
-      this.updateCompletedCount(updatedTodos); // Update counts after adding
-      return updatedTodos;
+    this.todoService.addTodo(title).then(() => {
+      this.newTodoItemTitle.set('');
     });
     this.newTodoItemTitle.set(''); // Clear input after adding
   }
 
   deleteTodoItem(todoItem: Todo) {
-    this.todoItems.update((todos) => {
-      const updatedTodos = todos.filter(item => item.id !== todoItem.id);
-      this.updateCompletedCount(updatedTodos); // Update counts after deleting
-      return updatedTodos;
-    });
+    this.todoService.deleteTodo(todoItem.id);
   }
+
 
   toggleTodoEditing(todoItem: Todo) {
     this.todoItems.update((todos) =>
@@ -112,12 +81,13 @@ export class TodosComponent implements OnInit {
   }
 
   saveEditedTodo(todoItem: Todo) {
-    this.todoItems.update((todos) =>
-      todos.map((todo) =>
-        todo.id === todoItem.id
-          ? { ...todo, title: todoItem.title.trim(), isEditing: false }
-          : todo
-      )
-    );
+    const updatedTodo = {
+      ...todoItem,
+      title: todoItem.title.trim(),
+      isEditing: false
+    };
+
+    this.todoService.updateTodo(updatedTodo);
   }
+
 }

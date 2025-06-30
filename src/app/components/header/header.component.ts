@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,5 +9,15 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  title = 'My first Angular app';
+  title = 'My Todo App';
+  public authService = inject(AuthService);
+  private router = inject(Router);
+
+  logout() {
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login']);
+    }).catch((err) => {
+      console.error('Logout failed:', err);
+    });
+  }
 }
