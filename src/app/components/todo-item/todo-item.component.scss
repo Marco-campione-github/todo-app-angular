@@ -1,20 +1,35 @@
-.todo__edit-input {
-  font-size: inherit;
-  padding: 0.2rem;
-  margin-left: 0.5rem;
-}
+// Todo Item Styles - Modern
+$main-grey: #2d2d2d;
+$secondary-green: #14532d;
+$accent-green: #22c55e;
+$border-radius: 12px;
 
-.edit-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  margin-left: 0.5rem;
-  color: #555;
-
-  &:hover {
-    color: #007bff;
-    transform: scale(1.1);
+.todo-item {
+  background: #fff;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+  padding: 1.2em 1em;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .todo-title {
+    color: $main-grey;
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+  .todo-actions {
+    button {
+      margin-left: 0.5em;
+    }
+  }
+  &.completed {
+    background: $accent-green;
+    color: #fff;
+    .todo-title {
+      text-decoration: line-through;
+      color: #fff;
+    }
   }
 }
 

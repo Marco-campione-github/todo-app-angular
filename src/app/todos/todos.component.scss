@@ -1,27 +1,20 @@
-/* Container for counters and filters */
-.counters-and-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
+// Todos List Styles - Modern
+$main-grey: #2d2d2d;
+$secondary-green: #14532d;
+$border-radius: 12px;
 
-/* Counters group */
-.counters {
-  display: flex;
-  gap: 16px;
-  flex-wrap: nowrap;
-  align-items: center;
-  flex-grow: 1;
-}
-
-/* Filters group */
-.filters {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  flex-grow: 2;
+.todos-list {
+  background: #fff;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.07);
+  padding: 2em 1.5em;
+  margin: 1.5em 0;
+  .todos-title {
+    color: $secondary-green;
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-bottom: 1em;
+  }
 }
 
 /* Individual counter style */
@@ -45,40 +38,89 @@
   color: #721c24;
 }
 
-/* Style your forms inside filters */
+
+.counters-and-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  align-items: stretch;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 700px) {
+  .counters-and-filters {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 2.5em;
+  }
+  .filters {
+    flex: 2;
+  }
+  .counters {
+    flex: 1;
+    min-width: 260px;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+@media (min-width: 700px) {
+  .filters {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1.5em;
+  }
+  .filters form {
+    flex: 1 1 0;
+    min-width: 180px;
+  }
+}
+
+
 .filters form {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: nowrap;
-  flex: 1 1 200px; /* grow and shrink, min 200px width */
+  flex-direction: column;
+  gap: 0.3em;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  min-width: 0;
 }
 
-/* Ensure inputs & selects fill the form nicely */
+@media (min-width: 700px) {
+  .filters form {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.7em;
+    min-width: 0;
+  }
+}
+
+.filters label {
+  font-weight: 500;
+  color: $main-grey;
+  margin-bottom: 0.2em;
+  min-width: 90px;
+}
 .filters input,
 .filters select {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   max-width: 250px;
+  padding: 0.7em 1em;
+  font-size: 1em;
+  border-radius: $border-radius;
+  border: 1.5px solid $main-grey;
+  box-sizing: border-box;
 }
-
-/* Add Todo form should be a bit wider */
-.filters form:first-child {
-  flex: 1 1 300px;
-}
-
-/* Button style stays same, can add margin-left */
 .filters button {
-  margin-left: 8px;
-}
-
-/* Responsive tweak */
-@media (max-width: 600px) {
-  .counters-and-filters {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .filters form {
-    flex: 1 1 100%;
-  }
+  margin-left: 0.5em;
+  min-width: 90px;
+  flex-shrink: 0;
 }

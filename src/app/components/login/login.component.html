@@ -1,20 +1,21 @@
-<h2>Login</h2>
-
-<form (submit)="login(); $event.preventDefault()">
-  <label for="email">Email</label>
-  <input type="email" [(ngModel)]="email" name="email" required autocomplete="email" id="email"/>
-
-  <label for="password">Password</label>
-  <input type="password" [(ngModel)]="password" name="password" required id="password"/>
-
-  <button type="submit">Login</button>
-</form>
-
-@if (error()) {
-  <div style="color: red;">{{ error() }}</div>
-}
-
-<div style="margin-top: 1rem;">
-  Not registered yet?
-  <button (click)="goToRegister()" type="button">Create an account</button>
+<div class="login-form">
+  <h2 class="form-title">Login</h2>
+  <form (submit)="login(); $event.preventDefault()">
+    <div class="form-row">
+      <label for="email">Email</label>
+      <input type="email" [(ngModel)]="email" name="email" required autocomplete="email" id="email"/>
+    </div>
+    <div class="form-row">
+      <label for="password">Password</label>
+      <input type="password" [(ngModel)]="password" name="password" required id="password"/>
+    </div>
+    <button type="submit">Login</button>
+  </form>
+  @if (error()) {
+    <div class="form-error">{{ error() }}</div>
+  }
+  <div class="form-footer">
+    Not registered yet?
+    <button (click)="goToRegister()" type="button">Create an account</button>
+  </div>
 </div>

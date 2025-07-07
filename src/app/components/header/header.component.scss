@@ -1,33 +1,55 @@
-header {
+// Header Styles - Modern Grey & Green Theme
+$main-grey: #2d2d2d;
+$secondary-green: #14532d;
+$accent-green: #22c55e;
+$border-radius: 12px;
+
+.header {
+  background: $main-grey;
+  color: #fff;
+  padding: 1.2em 2em;
+  border-radius: 0 0 $border-radius $border-radius;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .logo {
+    font-size: 1.7em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: $accent-green;
+  }
+  nav {
     display: flex;
-    padding-inline: 16px;
-    padding-block: 8px;
-    background-color: #333;
-    color: white;
     align-items: center;
-    justify-content: space-between;
+    a, span {
+      color: #fff;
+      margin-left: 1.5em;
+      font-weight: 500;
+      cursor: pointer;
+      &:hover {
+        color: $accent-green;
+      }
+    }
+  }
 }
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-
-    > span {
-        cursor: pointer;
-        &:hover {
-            color: #777;
-        }
-    }
-
-    ul {
-        list-style: none;
-        li {
-            cursor: pointer;
-            &:hover {
-                color: #777;
-            }
-        }
-    }
+.header {
+    flex-direction: row;
+}
+// Optional: Add beautiful nav list styling
+.header ul {
+  list-style: none;
+  display: flex;
+  gap: 1.2em;
+  margin: 0;
+  padding: 0;
+}
+.header ul li {
+  cursor: pointer;
+  font-weight: 500;
+  color: #fff;
+  transition: color 0.2s;
+}
+.header ul li:hover {
+  color: $accent-green;
 }

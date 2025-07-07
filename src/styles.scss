@@ -1,10 +1,96 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles - Modern Grey & Dark Green Theme */
+
+$main-grey: #2d2d2d;
+$light-grey: #f5f5f5;
+$secondary-green: #14532d;
+$accent-green: #22c55e;
+$border-radius: 12px;
+$transition: 0.2s all cubic-bezier(0.4,0,0.2,1);
 
 html, body {
   margin: 0;
   padding: 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: $light-grey;
+  color: $main-grey;
+  min-height: 100vh;
 }
 
 * {
   outline: none;
+  box-sizing: border-box;
+  transition: $transition;
+}
+
+a {
+  color: $secondary-green;
+  text-decoration: none;
+  &:hover {
+    color: $accent-green;
+    text-decoration: underline;
+  }
+}
+
+button, .btn {
+  background: $secondary-green;
+  color: #fff;
+  border: none;
+  border-radius: $border-radius;
+  padding: 0.6em 1.4em;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  &:hover, &:focus {
+    background: $accent-green;
+    color: $main-grey;
+    box-shadow: 0 4px 16px rgba(20,83,45,0.12);
+  }
+}
+
+input, textarea, select {
+  border: 1.5px solid $main-grey;
+  border-radius: $border-radius;
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  background: #fff;
+  color: $main-grey;
+  margin-bottom: 1em;
+  &:focus {
+    border-color: $secondary-green;
+    box-shadow: 0 0 0 2px rgba(20,83,45,0.08);
+  }
+}
+
+.card, .panel, .widget {
+  background: #fff;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.07);
+  padding: 2em 1.5em;
+  margin: 1.5em 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2em 1em;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 1.2em 0.5em;
+  }
+  .card, .panel, .widget {
+    padding: 1.2em 0.7em;
+  }
+}
+
+@media (max-width: 600px) {
+  html, body {
+    font-size: 15px;
+  }
+  .container {
+    padding: 0.5em 0.2em;
+  }
 }
